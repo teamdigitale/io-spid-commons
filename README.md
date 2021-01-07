@@ -21,4 +21,16 @@ Beware that any changes to the method signatures of
 [`CustomSamlClient`](./strategy/saml_client.ts) class.
 
 That's why the version of passport-saml in package.json is currently fixed at
-`1.2.0`.
+`1.3.5`.
+
+## Local development
+
+To run the project locally with the embedded example express application run the following commands:
+
+```sh
+yarn install
+yarn build
+docker-compose up --build
+```
+
+PS. If was present locally a previously cached version of `io-spid-commons` docker container and you get the error `Unexpected token <` on `node_modules/xml-encription/lib/templates/encrypted-key.tpl.xml.js`, is needed to clean all the old containers datas with `docker system prune --all` before running the project again.

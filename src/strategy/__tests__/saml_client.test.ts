@@ -89,10 +89,10 @@ describe("SAML prototype arguments check", () => {
       OriginalPassportSaml.SAML.prototype.validatePostResponse
     ).toHaveLength(2);
   });
-  it("should SAML generateAuthorizeRequest has 3 parameters", () => {
+  it("should SAML generateAuthorizeRequest has 4 parameters", () => {
     expect(
       OriginalPassportSaml.SAML.prototype.generateAuthorizeRequest
-    ).toHaveLength(3);
+    ).toHaveLength(4);
   });
 });
 
@@ -211,7 +211,7 @@ describe("CustomSamlClient#validatePostResponse", () => {
           expect.any(Function)
         );
         expect(mockedCallback).toBeCalledWith(null, {}, false);
-        resolve();
+        resolve(undefined);
       }, 100);
     });
   });
@@ -252,7 +252,7 @@ describe("CustomSamlClient#validatePostResponse", () => {
             `SAML#ExtendedRedisCacheProvider: remove() error ${expectedDelError}`
           )
         );
-        resolve();
+        resolve(undefined);
       }, 100);
     });
   });
@@ -274,7 +274,7 @@ describe("CustomSamlClient#generateAuthorizeRequest", () => {
       { validateInResponseTo: true },
       redisCacheProvider
     );
-    customSamlClient.generateAuthorizeRequest(req, false, mockCallback);
+    customSamlClient.generateAuthorizeRequest(req, false, true, mockCallback);
     expect(mockCallback).toBeCalledWith(null, expectedXML);
   });
 
@@ -299,14 +299,14 @@ describe("CustomSamlClient#generateAuthorizeRequest", () => {
       redisCacheProvider,
       mockAuthReqTampener
     );
-    customSamlClient.generateAuthorizeRequest(req, false, mockCallback);
+    customSamlClient.generateAuthorizeRequest(req, false, true, mockCallback);
     expect(mockAuthReqTampener).toBeCalledWith(SAMLRequest);
     // Before checking the execution of the callback we must await that the TaskEither execution is completed.
     await new Promise(resolve => {
       setTimeout(() => {
         expect(mockSet).toBeCalled();
         expect(mockCallback).toBeCalledWith(null, SAMLRequest);
-        resolve();
+        resolve(undefined);
       }, 100);
     });
   });
@@ -333,14 +333,14 @@ describe("CustomSamlClient#generateAuthorizeRequest", () => {
       redisCacheProvider,
       mockAuthReqTampener
     );
-    customSamlClient.generateAuthorizeRequest(req, false, mockCallback);
+    customSamlClient.generateAuthorizeRequest(req, false, true, mockCallback);
     expect(mockAuthReqTampener).toBeCalledWith(SAMLRequest);
     // Before checking the execution of the callback we must await that the TaskEither execution is completed.
     await new Promise(resolve => {
       setTimeout(() => {
         expect(mockSet).not.toBeCalled();
         expect(mockCallback).toBeCalledWith(expectedTamperError);
-        resolve();
+        resolve(undefined);
       }, 100);
     });
   });

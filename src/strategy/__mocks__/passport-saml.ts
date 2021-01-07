@@ -33,6 +33,7 @@ export class SAML {
   public generateAuthorizeRequest(
     req: express.Request,
     isPassive: boolean,
+    isHttpPostBinding: boolean,
     callback: (err: Error | null, xml?: string) => void
   ): void {
     mockWrapCallback(callback);

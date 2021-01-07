@@ -70,6 +70,7 @@ export class CustomSamlClient extends PassportSaml.SAML {
   public generateAuthorizeRequest(
     req: express.Request,
     isPassive: boolean,
+    isHttpPostBinding: boolean,
     callback: (err: Error, xml?: string) => void
   ): void {
     const newCallback = fromNullable(this.tamperAuthorizeRequest)
@@ -87,6 +88,11 @@ export class CustomSamlClient extends PassportSaml.SAML {
           : callback(e);
       })
       .getOrElse(callback);
-    super.generateAuthorizeRequest(req, isPassive, newCallback);
+    super.generateAuthorizeRequest(
+      req,
+      isPassive,
+      isHttpPostBinding,
+      newCallback
+    );
   }
 }

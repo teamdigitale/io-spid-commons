@@ -19,6 +19,7 @@ declare module "passport-saml" {
     generateAuthorizeRequest(
       req: express.Request,
       isPassive: boolean,
+      isHttpPostBinding: boolean,
       callback: (err: Error, xml?: string) => void
     ): void;
   }
