@@ -20,12 +20,8 @@ cert_file: "conf/idp.crt"
 # deve coincidere con quello presente nei metadati).
 # cfr. https://pysaml2.readthedocs.io/en/latest/howto/config.html#metadata
 metadata:
-  local:
-    - "conf/sp_metadata.xml"
-#  remote:
-#  - url: "http://spid-sp/metadata
-#    cert: "spid-sp.cert"
-
+  remote:
+    - "http://io-spid-commons:3000/metadata"
 
 # CONFIGURAZIONE TESTENV WEB SERVER
 
