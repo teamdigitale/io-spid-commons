@@ -66,7 +66,7 @@
     "node-forge": "^0.9.1",
     "passport": "^0.4.1",
     "passport-saml": "1.2.0",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "winston": "^3.0.0",
     "xml-crypto": "^1.4.0",
     "xml2js": "^0.4.23",
